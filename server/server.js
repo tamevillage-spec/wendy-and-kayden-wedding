@@ -49,6 +49,10 @@ function getMailer() {
   if (mailerTried) return mailer;
   mailerTried = true;
   if (!process.env.SMTP_HOST) return null;
+  if (process.env.SMTP_USER && !process.env.SMTP_PASS) {
+    console.warn("[mail] SMTP_PASS is not set — confirmations go to /outbox");
+    return null;
+  }
   try {
     const nodemailer = require("nodemailer");
     mailer = nodemailer.createTransport({
