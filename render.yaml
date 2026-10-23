@@ -1,0 +1,28 @@
+# Render blueprint — connect the repo, Render reads this file.
+# Free plans spin down when idle and have no persistent disk; use a paid
+# instance for the wedding so RSVPs are never lost.
+services:
+  - type: web
+    name: wendy-and-kayden
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: ADMIN_KEY
+        generateValue: true
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_SECURE
+        value: "false"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+    disk:
+      name: rsvp-data
+      mountPath: /app/server/data
+      sizeGB: 1

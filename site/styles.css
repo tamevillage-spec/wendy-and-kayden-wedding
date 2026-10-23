@@ -1,0 +1,988 @@
+/* ============================================================
+   Wendy & Kayden — The Ballroom
+   Warm cream, deep pine, crimson accent. Engraved programme.
+   Builds on /shared/base.css — only site-specific overrides.
+   ============================================================ */
+
+:root {
+  --cb-frame: rgba(26, 40, 33, 0.34);
+  --cb-frame-soft: rgba(26, 40, 33, 0.15);
+  --cb-crimson-line: rgba(160, 6, 27, 0.42);
+  --cb-gold-line: rgba(178, 126, 73, 0.5);
+  /* darkened from the shared muted tone for AA on cream */
+  --muted: #5b6458;
+}
+
+html {
+  background: var(--cream);
+}
+
+body {
+  background: var(--cream);
+  color: var(--pine);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #f0dadd;
+  color: var(--pine);
+}
+
+a:hover {
+  color: var(--crimson);
+}
+
+:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 3px;
+}
+
+/* ---------- small-caps labels ---------- */
+
+.eyebrow {
+  color: var(--crimson);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  margin-bottom: 1rem;
+}
+
+.section--crimson .eyebrow {
+  color: var(--cream);
+}
+
+/* ---------- navigation — dark text on cream ---------- */
+
+.site-nav {
+  color: var(--pine);
+}
+
+.site-nav.is-stuck {
+  background: rgba(250, 246, 239, 0.96);
+  border-bottom-color: var(--cb-frame-soft);
+}
+
+.nav-mark {
+  color: var(--crimson);
+  letter-spacing: 0.24em;
+}
+
+.nav-links a {
+  color: var(--pine);
+  opacity: 0.88;
+}
+
+.nav-links a:hover {
+  color: var(--crimson);
+  opacity: 1;
+}
+
+.nav-cta {
+  color: var(--crimson);
+  border-color: var(--crimson);
+  padding: 0.55rem 1.05rem;
+}
+
+.site-nav:not(.site-nav--dark) .nav-cta:hover {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: var(--cream);
+}
+
+@media (max-width: 820px) {
+  .nav-links a {
+    color: var(--cream);
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+  }
+
+  .nav-links .nav-cta {
+    color: var(--cream);
+  }
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(3.5rem, 7vh, 5rem) var(--gutter) clamp(2rem, 4vh, 2.5rem);
+  background: var(--cream);
+  text-align: center;
+}
+
+.hero__frame {
+  width: min(980px, 100%);
+  border: 1px solid var(--cb-frame);
+  padding: 10px;
+}
+
+.hero__inner {
+  border: 1px solid var(--cb-frame);
+  padding: clamp(2.5rem, 6vh, 3.4rem) clamp(1.2rem, 5vw, 3.2rem) clamp(2rem, 4.5vh, 2.6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__seal {
+  width: clamp(66px, 15vw, 86px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--crimson);
+  position: relative;
+  margin-bottom: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--crimson);
+}
+
+.hero__seal::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--cb-crimson-line);
+  pointer-events: none;
+}
+
+.hero__seal span {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2.4vw, 1.1rem);
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+
+.hero__eyebrow {
+  margin-bottom: clamp(1.1rem, 3vw, 1.8rem);
+}
+
+/* A stacked lockup: side-by-side the ampersand lands at the end of the
+   first line at every width the frame allows. */
+.hero__names {
+  font-size: clamp(2.35rem, 11vw, 7.25rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+  color: var(--pine);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  max-width: 100%;
+}
+
+.hero__name {
+  white-space: nowrap;
+}
+
+.hero__amp {
+  display: block;
+  font-size: 0.42em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--crimson);
+}
+
+.hero__married {
+  margin: clamp(1.1rem, 3vw, 1.6rem) 0 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.hero__rule {
+  width: clamp(54px, 12vw, 76px);
+  height: 1px;
+  border: 0;
+  background: var(--crimson);
+  margin: clamp(1.9rem, 4vw, 2.6rem) auto;
+}
+
+.hero__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: clamp(0.66rem, 1.6vw, 0.74rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pine);
+  line-height: 1.8;
+}
+
+.hero__place {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 0.8rem;
+}
+
+.hero__place [data-venue-city]::before {
+  content: "·";
+  color: var(--crimson);
+  margin-right: 0.8rem;
+}
+
+.hero__reply {
+  margin: clamp(1.5rem, 3.5vw, 2.1rem) 0 0;
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: none;
+}
+
+.hero__reply:has([data-rsvp-deadline]:not(:empty)) {
+  display: block;
+}
+
+.hero__reply [data-rsvp-deadline] {
+  color: var(--crimson);
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-inline: 0.9rem;
+  }
+
+  .hero__inner {
+    padding-inline: 0.9rem;
+  }
+
+  .hero__meta {
+    letter-spacing: 0.14em;
+  }
+}
+
+/* ---------- sections + ornaments ---------- */
+
+.section {
+  background: var(--cream);
+  padding-block: clamp(3.8rem, 8vw, 7rem);
+}
+
+.section--paper {
+  background: var(--paper);
+}
+
+.section--crimson {
+  background: var(--crimson);
+  color: var(--cream);
+}
+
+.ornament-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  width: min(260px, 60%);
+  margin: 0 auto clamp(2rem, 4.5vw, 3.1rem);
+  color: var(--crimson);
+}
+
+.ornament-rule::before,
+.ornament-rule::after {
+  content: "";
+  height: 1px;
+  flex: 1 1 auto;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.ornament-rule i {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  transform: rotate(45deg);
+  flex: 0 0 auto;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4.5vw, 3.2rem);
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  color: var(--pine);
+}
+
+.section--crimson .section-title {
+  color: var(--cream);
+}
+
+/* headings carry a short hairline beneath, like a menu card */
+
+.section-head .section-title::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 1px;
+  background: var(--cb-gold-line);
+  margin: 1.2rem auto 0;
+}
+
+.section--crimson .section-head .section-title::after {
+  background: rgba(250, 246, 239, 0.55);
+}
+
+/* ---------- portrait plate ---------- */
+
+.portrait-band {
+  padding-block: clamp(2.8rem, 6vw, 4.6rem);
+}
+
+.portrait {
+  max-width: min(460px, 84vw);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.portrait__frame {
+  padding: 9px;
+  border: 1px solid var(--cb-frame);
+}
+
+.portrait__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--cb-frame-soft);
+}
+
+.portrait__caption {
+  margin-top: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+.portrait__names {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  letter-spacing: 0.05em;
+  color: var(--pine);
+}
+
+.portrait__place {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--crimson);
+}
+
+/* ---------- the day — menu-style timeline ---------- */
+
+.timeline--menu {
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.timeline--menu li {
+  display: block;
+  padding-block: clamp(1.5rem, 3.5vw, 2rem);
+}
+
+.timeline--menu time,
+.timeline--menu .timeline__when {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 0.55rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline--menu strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+
+.timeline__note {
+  display: block;
+  max-width: 42ch;
+  margin: 0.55rem auto 0;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.day-note {
+  max-width: 44ch;
+  margin: clamp(1.8rem, 3.5vw, 2.4rem) auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-style: italic;
+  color: var(--forest);
+}
+
+/* ---------- venue ---------- */
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(1.1rem, 2.4vw, 1.8rem);
+  align-items: stretch;
+  max-width: 1020px;
+  margin-inline: auto;
+}
+
+@media (max-width: 780px) {
+  .venue-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.venue-card {
+  background: var(--cream);
+  border: 1px solid var(--cb-frame);
+  padding: clamp(1.8rem, 3.6vw, 2.9rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.venue-card::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--cb-frame-soft);
+  pointer-events: none;
+}
+
+.venue-card::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  border-left: 1px solid rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+}
+
+.venue-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.venue-card__title {
+  font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.venue-card__city {
+  margin: 0.45rem 0 1.1rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--crimson);
+}
+
+.venue-card p {
+  font-size: 0.95rem;
+  color: var(--forest);
+  line-height: 1.75;
+}
+
+.venue-card--parking {
+  justify-content: flex-start;
+}
+
+.venue-card--parking p {
+  margin: 0;
+}
+
+.venue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.venue-actions .btn {
+  padding: 0.8rem 1.4rem;
+}
+
+/* dress code */
+
+.dress {
+  max-width: 580px;
+  margin: clamp(2.6rem, 6vw, 4rem) auto 0;
+  padding-top: clamp(2.2rem, 5vw, 3.2rem);
+  border-top: 1px solid var(--cb-crimson-line);
+  text-align: center;
+}
+
+.dress .eyebrow {
+  margin-bottom: 0.8rem;
+}
+
+.dress .h3 {
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  margin-bottom: 0.8rem;
+}
+
+.dress p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-style: italic;
+  color: var(--forest);
+  line-height: 1.55;
+}
+
+/* ---------- wedding party ---------- */
+
+.party-group + .party-group {
+  margin-top: clamp(2.6rem, 5vw, 3.8rem);
+}
+
+.party-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  text-align: center;
+  margin: 0 0 clamp(1.2rem, 3vw, 1.7rem);
+}
+
+.party-grid {
+  list-style: none;
+  padding: 0;
+  margin-inline: auto;
+  max-width: 1020px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.7rem, 2vw, 1.2rem);
+}
+
+.party-group + .party-group .party-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 780px;
+}
+
+@media (max-width: 720px) {
+  .party-grid,
+  .party-group + .party-group .party-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .party-grid > .person:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - clamp(0.35rem, 1vw, 0.6rem));
+    justify-self: center;
+  }
+}
+
+.person {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(110px, 16vw, 140px);
+  padding: 1.5rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--cb-frame-soft);
+}
+
+.person::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(26, 40, 33, 0.08);
+  pointer-events: none;
+}
+
+/* Two of the bridal party are named Wendy, so the bride's card is
+   marked by its frame rather than by her name alone. */
+.person--bride {
+  border-color: var(--crimson);
+}
+
+.person--bride::before {
+  border-color: var(--cb-crimson-line);
+}
+
+.person__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--pine);
+}
+
+/* ---------- gifts — the crimson anchor ---------- */
+
+.section--crimson .gift {
+  max-width: 900px;
+  margin-inline: auto;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.gift__qr {
+  margin: 0;
+  text-align: center;
+}
+
+.section--crimson .qr-frame {
+  background: var(--cream);
+  border: 1px solid rgba(250, 246, 239, 0.6);
+  box-shadow: none;
+  padding: 0.8rem;
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+.gift__caption {
+  margin-top: 1rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.gift__copy {
+  text-align: center;
+}
+
+.gift__headline {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 1.1rem;
+}
+
+.gift__copy p {
+  color: var(--cream);
+  font-size: 0.97rem;
+  line-height: 1.8;
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+.gift__copy p + p {
+  margin-top: 1rem;
+}
+
+@media (max-width: 760px) {
+  .gift__qr {
+    order: 2;
+  }
+
+  .gift__copy {
+    order: 1;
+  }
+}
+
+/* ---------- RSVP ---------- */
+
+.rsvp-lede {
+  max-width: 54ch;
+  margin: 0 auto;
+  color: var(--forest);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.rsvp-frame {
+  max-width: 780px;
+  margin-inline: auto;
+  border: 1px solid var(--cb-frame);
+  padding: 10px;
+  background: transparent;
+}
+
+.rsvp-form {
+  background: var(--cream);
+  border: 1px solid var(--cb-frame-soft);
+  padding: clamp(1.4rem, 4vw, 2.6rem);
+  gap: 1.25rem;
+}
+
+/* the template's display:grid must not defeat the success-state [hidden] */
+.rsvp-frame .rsvp-form[hidden],
+.rsvp-frame .card[hidden] {
+  display: none;
+}
+
+.field {
+  gap: 0.5rem;
+}
+
+.field label,
+.field-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  color: var(--forest);
+}
+
+.field input,
+.field select,
+.field textarea {
+  border-radius: 0;
+  border-color: rgba(26, 40, 33, 0.22);
+  background: var(--paper);
+  padding: 0.85rem 0.9rem;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--crimson);
+  box-shadow: none;
+  outline: 2px solid var(--crimson);
+  outline-offset: 1px;
+  background: #fff;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #8b9187;
+}
+
+.choice input {
+  border-radius: 0;
+}
+
+.choice {
+  border-radius: 0;
+  border-color: rgba(26, 40, 33, 0.22);
+  background: var(--paper);
+  letter-spacing: 0.08em;
+}
+
+.choice:has(input:checked) {
+  border-color: var(--pine);
+  background: var(--pine);
+  color: var(--cream);
+}
+
+.choice:has(input:focus-visible) {
+  outline-color: var(--crimson);
+}
+
+.rsvp-form .btn {
+  width: 100%;
+  border-radius: 0;
+  --btn-bg: var(--pine);
+  --btn-fg: var(--cream);
+}
+
+.rsvp-form .btn:hover {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: var(--cream);
+}
+
+.form-status {
+  background: #f4e6e4;
+  border-left-color: var(--crimson);
+  color: var(--pine);
+}
+
+.form-status--error {
+  background: #f7e6e6;
+  border-left-color: var(--crimson);
+}
+
+.form-note {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.rsvp-frame .card--gold {
+  border: 1px solid var(--line-gold);
+  background: var(--cream);
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+}
+
+.rsvp-frame .card--gold .eyebrow {
+  color: var(--crimson);
+}
+
+.success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.6rem;
+}
+
+/* ---------- FAQ ---------- */
+
+.faq {
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.faq summary {
+  font-size: clamp(1.15rem, 2.3vw, 1.4rem);
+  letter-spacing: 0.015em;
+}
+
+.faq summary::after {
+  color: var(--crimson);
+  font-size: 1.2rem;
+}
+
+.faq details > div {
+  color: var(--forest);
+}
+
+/* ---------- buttons, shared corrections ---------- */
+
+.btn {
+  --btn-bg: var(--pine);
+  --btn-fg: var(--cream);
+  border-radius: 0;
+  letter-spacing: 0.22em;
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--pine);
+  background: transparent;
+  border-color: var(--cb-frame);
+  color: var(--pine);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--pine);
+  --btn-fg: var(--cream);
+  background: var(--pine);
+  border-color: var(--pine);
+  color: var(--cream);
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  background: var(--pine);
+  color: rgba(250, 246, 239, 0.88);
+  padding-block: clamp(3.2rem, 7vw, 4.8rem);
+}
+
+.footer-mono {
+  margin: 0;
+  color: var(--cream);
+  font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+  letter-spacing: 0.24em;
+}
+
+.footer-rule {
+  width: 58px;
+  height: 1px;
+  border: 0;
+  background: var(--cb-gold-line);
+  margin: 1.4rem auto;
+}
+
+.footer-line {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  color: var(--cream);
+  margin: 0 0 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 1.2rem;
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.site-footer a {
+  color: var(--cream);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: rgba(250, 246, 239, 0.4);
+}
+
+.site-footer a:hover {
+  color: var(--gold-light);
+}
+
+.footer-copy {
+  margin: 1.8rem 0 0;
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(250, 246, 239, 0.66);
+}
+
+.site-footer :focus-visible,
+.section--crimson :focus-visible {
+  outline-color: var(--cream);
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 560px) {
+  .venue-actions {
+    align-self: stretch;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .venue-actions .btn,
+  .success-actions .btn {
+    width: 100%;
+  }
+
+  .footer-contacts {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-contacts [aria-hidden="true"] {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .section {
+    padding-block: 3.4rem;
+  }
+
+  .hero__inner {
+    padding-inline: 0.8rem;
+  }
+
+  .choice-group {
+    grid-template-columns: 1fr;
+  }
+
+  .venue-card,
+  .rsvp-form {
+    padding: 1.35rem;
+  }
+}
