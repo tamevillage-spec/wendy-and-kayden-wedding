@@ -236,16 +236,18 @@ app.get("/admin", requireAdmin, (req, res) => {
   const esc = (v) =>
     String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
+  const dash = (v) => esc(v) || "—";
+
   const tableRows = rows
     .map(
       (r) => `<tr>
-      <td>${esc(r.fullName)}</td>
-      <td><a href="mailto:${esc(r.email)}">${esc(r.email)}</a></td>
-      <td><span class="pill ${r.attending}">${r.attending === "yes" ? "Attending" : "Declined"}</span></td>
-      <td>${r.attending === "yes" ? r.guests : "—"}</td>
-      <td>${esc(r.dietary)}</td>
-      <td>${esc(r.note)}</td>
-      <td class="muted">${esc(r.createdAt.slice(0, 16).replace("T", " "))}</td>
+      <td class="who" data-label="Name">${esc(r.fullName)}</td>
+      <td data-label="Email"><a href="mailto:${esc(r.email)}">${esc(r.email)}</a></td>
+      <td data-label="Reply"><span class="pill ${r.attending}">${r.attending === "yes" ? "Attending" : "Declined"}</span></td>
+      <td data-label="Seats">${r.attending === "yes" ? r.guests : "—"}</td>
+      <td data-label="Dietary">${dash(r.dietary)}</td>
+      <td data-label="Note">${dash(r.note)}</td>
+      <td class="muted" data-label="Received">${esc(r.createdAt.slice(0, 16).replace("T", " "))}</td>
     </tr>`
     )
     .join("");
@@ -273,16 +275,29 @@ app.get("/admin", requireAdmin, (req, res) => {
   .muted { color:#6d7568; white-space:nowrap; font-size:.8rem; }
   .bar { display:flex; justify-content:space-between; align-items:end; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem; }
   a { color:#28604c; }
-  .banner { background:#efe2cd; border-left:3px solid #b27e49; padding:.9rem 1.1rem; font-size:.85rem; margin-bottom:1.5rem; }
   .empty { padding:3rem; text-align:center; color:#6d7568; background:#fffdf8; border:1px solid #e2d9c9; }
-  @media (max-width:700px) { th:nth-child(5), td:nth-child(5), th:nth-child(6), td:nth-child(6) { display:none; } }
+  @media (max-width:760px) {
+    body { padding:1.5rem 1rem 3rem; }
+    .stats { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+    .stat { min-width:0; padding:.85rem 1rem; }
+    .stat b { font-size:1.5rem; }
+    thead { display:none; }
+    table, tbody, tr, td { display:block; width:100%; }
+    table { border:0; background:transparent; font-size:.95rem; }
+    tr { background:#fffdf8; border:1px solid #e2d9c9; padding:1rem 1.1rem; margin-bottom:.9rem; }
+    td { border:0; padding:.32rem 0; display:flex; gap:.75rem; align-items:baseline; }
+    td::before { content:attr(data-label); flex:0 0 5.2rem; font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:#b27e49; }
+    td.who { display:block; font-family:Georgia,serif; font-size:1.2rem; padding:0 0 .55rem; margin-bottom:.4rem; border-bottom:1px solid #efe7da; }
+    td.who::before { display:none; }
+    td a { word-break:break-word; }
+    .muted { font-size:.8rem; }
+  }
 </style></head>
 <body><div class="wrap">
   <div class="bar">
     <div><h1>RSVPs</h1><div class="sub">${esc(site.couple.display)} · ${esc(site.dateDisplay)}</div></div>
-    <div><a href="/admin/export.csv?key=${encodeURIComponent(req.query.key)}">Download CSV</a></div>
+    <div><a href="/admin?key=${encodeURIComponent(req.query.key)}">Refresh</a> · <a href="/admin/export.csv?key=${encodeURIComponent(req.query.key)}">Download CSV</a></div>
   </div>
-  ${getMailer() ? "" : '<div class="banner">Email is not configured yet — confirmations are being written to <code>/outbox</code> instead of sent. Set SMTP_HOST, SMTP_USER, SMTP_PASS and MAIL_FROM to go live.</div>'}
   <div class="stats">
     <div class="stat"><span>Replies</span><b>${rows.length}</b></div>
     <div class="stat"><span>Attending</span><b>${yes.length}</b></div>
