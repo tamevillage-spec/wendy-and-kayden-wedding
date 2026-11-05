@@ -64,7 +64,7 @@ window.WEDDING = {
   },
 
   contacts: [
-    { name: "Wendy", email: "wendymarie2727@gmail.com" },
+    { name: "Wendy", email: "wendymarie7272@gmail.com" },
     { name: "Kayden", email: "Kaydenjacklin@gmail.com" },
   ],
 
