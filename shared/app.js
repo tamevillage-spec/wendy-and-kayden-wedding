@@ -208,7 +208,7 @@
       if (data.attending === "no") {
         var lead = $("[data-success-lead]", success);
         if (lead) {
-          lead.textContent = "Thank you for letting us know — we will miss you. If your plans change, just reply to our email.";
+          lead.textContent = "Thank you for letting us know — we will miss you. If your plans change, just write to us directly.";
         }
         var actions = $(".success-actions", success);
         if (actions) actions.hidden = true;
@@ -238,7 +238,7 @@
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
-        setStatus("Please enter a valid email address so we can send your confirmation.", true);
+        setStatus("Please enter a valid email address so we can reach you if plans change.", true);
         form.querySelector("[name='email']").focus();
         return;
       }
